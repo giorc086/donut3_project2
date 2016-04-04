@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Karla:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <title>Donut Charts</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <h5>Log In | Sign Up</h5>
+    <h1>SNOW MATTERS</h1>
+    <h2>Skiability Index</h2>
+    <h4>Aspen, Colorado</h4>
+    <div id="chart">
+        <ul>
+            <li>
+                <div id="chartNov">
+            </li>
+            <li>
+                <div id="chartDec">
+            </li>
+            <li>
+                <div id="chartJan">
+            </li>
+            <li>
+                <div id="chartFeb">
+            </li>
+            <li>
+                <div id="chartMar">
+            </li>
+            <li>
+                <div id="chartApr">
+            </li>
+        </ul>
+        </div>
+        <script type="text/javascript" src="d3/d3.min.js"></script>
+        <!-- <script src="d3/d3.legend.js"></script> --> 
+        <script>
+        /////////////NOVEMBER
+        (function(d3) {
+            'use strict';
+
+            var width = 80;
+            var height = 80;
+            var radius = Math.min(width, height) / 2;
+            var donutWidth = 15;
+
+
+            // var color = d3.scale.category20b();
+            var color = d3.scale.ordinal()
+      .domain(["Good", "Ok", "Bad"])
+      .range(["#8de8ff", "#1f4199" , "#cc3917"]);
+
+            var svg = d3.select('#chartNov')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .append('g')
+                .attr('transform', 'translate(' + (width / 2) +
+                    ',' + (height / 2) + ')');
+
+            var arc = d3.svg.arc()
+                .innerRadius(radius - donutWidth)
+                .outerRadius(radius);
+
+            var pie = d3.layout.pie()
+                .value(function(d) {
+                    return d.month;
+                })
+                .sort(null);
+
+            d3.csv('data/nov_Aspen.csv', function(error, dataset) {
+                dataset.forEach(function(d) {
+                    d.month = +d.month;
+                });
+
+                var path = svg.selectAll('path')
+                    .data(pie(dataset))
+                    .enter()
+                    .append('path')
+                    .attr('d', arc)
+                    .attr('fill', function(d, i) {
+                        return color(d.data.condition);
+                    });
+
+
+
+            });
+
+        })(window.d3);
+
+        ///////////////DECEMBER
+        (function(d3) {
+            'use strict';
+
+            var width = 80;
+            var height = 80;
+            var radius = Math.min(width, height) / 2;
+            var donutWidth = 15;
+
+                  var color = d3.scale.ordinal()
+      .domain(["Good", "Ok", "Bad"])
+      .range(["#8de8ff", "#1f4199" , "#cc3917"]);
+
+            var svg = d3.select('#chartDec')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .append('g')
+                .attr('transform', 'translate(' + (width / 2) +
+                    ',' + (height / 2) + ')');
+
+            var arc = d3.svg.arc()
+                .innerRadius(radius - donutWidth)
+                .outerRadius(radius);
+
+            var pie = d3.layout.pie()
+                .value(function(d) {
+                    return d.month;
+                })
+                .sort(null);
+
+            d3.csv('data/dec_Aspen.csv', function(error, dataset) {
+                dataset.forEach(function(d) {
+                    d.month = +d.month;
+                });
+
+                var path = svg.selectAll('path')
+                    .data(pie(dataset))
+                    .enter()
+                    .append('path')
+                    .attr('d', arc)
+                    .attr('fill', function(d, i) {
+                        return color(d.data.condition);
+                    });
+            });
+
+
+
+
+        })(window.d3);
+
+        ///////////////JANUARY
+        (function(d3) {
+            'use strict';
+
+            var width = 80;
+            var height = 80;
+            var radius = Math.min(width, height) / 2;
+            var donutWidth = 15;
+
+      var color = d3.scale.ordinal()
+      .domain(["Good", "Ok", "Bad"])
+      .range(["#8de8ff", "#1f4199" , "#cc3917"]);
+
+            var svg = d3.select('#chartJan')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .append('g')
+                .attr('transform', 'translate(' + (width / 2) +
+                    ',' + (height / 2) + ')');
+
+            var arc = d3.svg.arc()
+                .innerRadius(radius - donutWidth)
+                .outerRadius(radius);
+
+            var pie = d3.layout.pie()
+                .value(function(d) {
+                    return d.month;
+                })
+                .sort(null);
+
+            d3.csv('data/jan_Aspen.csv', function(error, dataset) {
+                dataset.forEach(function(d) {
+                    d.month = +d.month;
+                });
+
+                var path = svg.selectAll('path')
+                    .data(pie(dataset))
+                    .enter()
+                    .append('path')
+                    .attr('d', arc)
+                    .attr('fill', function(d, i) {
+                        return color(d.data.condition);
+                    });
+
+            });
+
+        })(window.d3);
+
+        ///////////////FEBRUARY
+        (function(d3) {
+            'use strict';
+
+            var width = 80;
+            var height = 80;
+            var radius = Math.min(width, height) / 2;
+            var donutWidth = 15;
+
+
+                  var color = d3.scale.ordinal()
+      .domain(["Good", "Ok", "Bad"])
+      .range(["#8de8ff", "#1f4199" , "#cc3917"]);
+
+            var svg = d3.select('#chartFeb')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .append('g')
+                .attr('transform', 'translate(' + (width / 2) +
+                    ',' + (height / 2) + ')');
+
+            var arc = d3.svg.arc()
+                .innerRadius(radius - donutWidth)
+                .outerRadius(radius);
+
+            var pie = d3.layout.pie()
+                .value(function(d) {
+                    return d.month;
+                })
+                .sort(null);
+
+            d3.csv('data/feb_Aspen.csv', function(error, dataset) {
+                dataset.forEach(function(d) {
+                    d.month = +d.month;
+                });
+
+                var path = svg.selectAll('path')
+                    .data(pie(dataset))
+                    .enter()
+                    .append('path')
+                    .attr('d', arc)
+                    .attr('fill', function(d, i) {
+                        return color(d.data.condition);
+                    });
+
+            });
+
+        })(window.d3);
+
+        ///////////////MARCH
+        (function(d3) {
+            'use strict';
+
+            var width = 80;
+            var height = 80;
+            var radius = Math.min(width, height) / 2;
+            var donutWidth = 15;
+
+
+                  var color = d3.scale.ordinal()
+      .domain(["Good", "Ok", "Bad"])
+      .range(["#8de8ff", "#1f4199" , "#cc3917"]);
+
+            var svg = d3.select('#chartMar')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .append('g')
+                .attr('transform', 'translate(' + (width / 2) +
+                    ',' + (height / 2) + ')');
+
+            var arc = d3.svg.arc()
+                .innerRadius(radius - donutWidth)
+                .outerRadius(radius);
+
+            var pie = d3.layout.pie()
+                .value(function(d) {
+                    return d.month;
+                })
+                .sort(null);
+
+            d3.csv('data/mar_Aspen.csv', function(error, dataset) {
+                dataset.forEach(function(d) {
+                    d.month = +d.month;
+                });
+
+                var path = svg.selectAll('path')
+                    .data(pie(dataset))
+                    .enter()
+                    .append('path')
+                    .attr('d', arc)
+                    .attr('fill', function(d, i) {
+                        return color(d.data.condition);
+                    });
+
+            });
+
+        })(window.d3);
+
+        ///////////////APRIL
+        (function(d3) {
+            'use strict';
+
+            var width = 80;
+            var height = 80;
+            var radius = Math.min(width, height) / 2;
+            var donutWidth = 15;
+
+
+                  var color = d3.scale.ordinal()
+      .domain(["Good", "Ok", "Bad"])
+      .range(["#8de8ff", "#1f4199" , "#cc3917"]);
+
+            var svg = d3.select('#chartApr')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .append('g')
+                .attr('transform', 'translate(' + (width / 2) +
+                    ',' + (height / 2) + ')');
+
+            var arc = d3.svg.arc()
+                .innerRadius(radius - donutWidth)
+                .outerRadius(radius);
+
+            var pie = d3.layout.pie()
+                .value(function(d) {
+                    return d.month;
+                })
+                .sort(null);
+
+            d3.csv('data/apr_Aspen.csv', function(error, dataset) {
+                dataset.forEach(function(d) {
+                    d.month = +d.month;
+                });
+
+                var path = svg.selectAll('path')
+                    .data(pie(dataset))
+                    .enter()
+                    .append('path')
+                    .attr('d', arc)
+                    .attr('fill', function(d, i) {
+                        return color(d.data.condition);
+                    });
+
+            });
+    //                 legend = svg.append("g")
+    // .attr("class","legend")
+    // .attr("transform","translate(50,30)")
+    // .style("font-size","12px")
+    // .call(d3.legend)
+
+        })(window.d3);
+
+
+        </script>
+</body>
+
+</html>
