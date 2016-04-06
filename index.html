@@ -1,357 +1,102 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Karla:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <title>Donut Charts</title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
-
-    <style>
-
-    </style>
+     <script type="text/javascript" src="d3/d3.min.js"></script>
 </head>
 
 <body>
+    <div id="navBar">
+        <ul class="navBar">
+            <li><a href="#anchorAspen">Aspen, CO</a></li>
+            <li><a href="#anchorPark">Park City, UT</a></li>
+            <li><a href="#">Keystone, CO</a></li>
+            <li><a href="#">Cervinia, Italy</a></li>
+            <li><a href="#">Crans, Switzerland</a></li>
+            <li><a href="#">Whistler, BC</a></li>
+            <li><a href="#">Jasper, AL</a></li>
+            <br>
+            <li><img src="legend.jpg" style="width:100px;"></li>
+        </ul>
+    </div>
+
     <h5>Log In | Sign Up</h5>
     <h1>SNOW MATTERS</h1>
-    <h2>Skiability Index</h2>
-    <h4>Aspen, Colorado</h4>
-    <div id="chart">
-        <ul>
+
+    <h2><a name="anchorAspen">Aspen, Colorado</a></h2>
+    <h4><p>Skiability Index</p></h4>
+    <div id="chartAspen">
+        <!-- donut charts -->
+        <ul class="chartMonthAspen">
             <li>
-                <div id="chartNov">
+                <div id="chartNovAspen">
+                    <p id="text">November</p></div>
             </li>
             <li>
-                <div id="chartDec">
+                <div id="chartDecAspen">
+                    <p id="text">December</p></div>
             </li>
             <li>
-                <div id="chartJan">
+                <div id="chartJanAspen">
+                    <p id="text">January</p></div>
             </li>
             <li>
-                <div id="chartFeb">
+                <div id="chartFebAspen">
+                    <p id="text">February</p></div>
             </li>
             <li>
-                <div id="chartMar">
+                <div id="chartMarAspen">
+                    <p id="text">March</p></div>
             </li>
             <li>
-                <div id="chartApr">
+                <div id="chartAprAspen">
+                    <p id="text">April</p></div>
             </li>
         </ul>
         </div>
-        <script type="text/javascript" src="d3/d3.min.js"></script>
-        <!-- <script src="d3/d3.legend.js"></script> --> 
-        <script>
-        /////////////NOVEMBER
-        (function(d3) {
-            'use strict';
-
-            var width = 80;
-            var height = 80;
-            var radius = Math.min(width, height) / 2;
-            var donutWidth = 15;
-
-
-            // var color = d3.scale.category20b();
-            var color = d3.scale.ordinal()
-      .domain(["Good", "Ok", "Bad"])
-      .range(["#8de8ff", "#1f4199" , "#cc3917"]);
-
-            var svg = d3.select('#chartNov')
-                .append('svg')
-                .attr('width', width)
-                .attr('height', height)
-                .append('g')
-                .attr('transform', 'translate(' + (width / 2) +
-                    ',' + (height / 2) + ')');
-
-            var arc = d3.svg.arc()
-                .innerRadius(radius - donutWidth)
-                .outerRadius(radius);
-
-            var pie = d3.layout.pie()
-                .value(function(d) {
-                    return d.month;
-                })
-                .sort(null);
-
-            d3.csv('data/nov_Aspen.csv', function(error, dataset) {
-                dataset.forEach(function(d) {
-                    d.month = +d.month;
-                });
-
-                var path = svg.selectAll('path')
-                    .data(pie(dataset))
-                    .enter()
-                    .append('path')
-                    .attr('d', arc)
-                    .attr('fill', function(d, i) {
-                        return color(d.data.condition);
-                    });
-
-
-
-            });
-
-        })(window.d3);
-
-        ///////////////DECEMBER
-        (function(d3) {
-            'use strict';
-
-            var width = 80;
-            var height = 80;
-            var radius = Math.min(width, height) / 2;
-            var donutWidth = 15;
-
-                  var color = d3.scale.ordinal()
-      .domain(["Good", "Ok", "Bad"])
-      .range(["#8de8ff", "#1f4199" , "#cc3917"]);
-
-            var svg = d3.select('#chartDec')
-                .append('svg')
-                .attr('width', width)
-                .attr('height', height)
-                .append('g')
-                .attr('transform', 'translate(' + (width / 2) +
-                    ',' + (height / 2) + ')');
-
-            var arc = d3.svg.arc()
-                .innerRadius(radius - donutWidth)
-                .outerRadius(radius);
-
-            var pie = d3.layout.pie()
-                .value(function(d) {
-                    return d.month;
-                })
-                .sort(null);
-
-            d3.csv('data/dec_Aspen.csv', function(error, dataset) {
-                dataset.forEach(function(d) {
-                    d.month = +d.month;
-                });
-
-                var path = svg.selectAll('path')
-                    .data(pie(dataset))
-                    .enter()
-                    .append('path')
-                    .attr('d', arc)
-                    .attr('fill', function(d, i) {
-                        return color(d.data.condition);
-                    });
-            });
-
-
-
-
-        })(window.d3);
-
-        ///////////////JANUARY
-        (function(d3) {
-            'use strict';
-
-            var width = 80;
-            var height = 80;
-            var radius = Math.min(width, height) / 2;
-            var donutWidth = 15;
-
-      var color = d3.scale.ordinal()
-      .domain(["Good", "Ok", "Bad"])
-      .range(["#8de8ff", "#1f4199" , "#cc3917"]);
-
-            var svg = d3.select('#chartJan')
-                .append('svg')
-                .attr('width', width)
-                .attr('height', height)
-                .append('g')
-                .attr('transform', 'translate(' + (width / 2) +
-                    ',' + (height / 2) + ')');
-
-            var arc = d3.svg.arc()
-                .innerRadius(radius - donutWidth)
-                .outerRadius(radius);
-
-            var pie = d3.layout.pie()
-                .value(function(d) {
-                    return d.month;
-                })
-                .sort(null);
-
-            d3.csv('data/jan_Aspen.csv', function(error, dataset) {
-                dataset.forEach(function(d) {
-                    d.month = +d.month;
-                });
-
-                var path = svg.selectAll('path')
-                    .data(pie(dataset))
-                    .enter()
-                    .append('path')
-                    .attr('d', arc)
-                    .attr('fill', function(d, i) {
-                        return color(d.data.condition);
-                    });
-
-            });
-
-        })(window.d3);
-
-        ///////////////FEBRUARY
-        (function(d3) {
-            'use strict';
-
-            var width = 80;
-            var height = 80;
-            var radius = Math.min(width, height) / 2;
-            var donutWidth = 15;
-
-
-                  var color = d3.scale.ordinal()
-      .domain(["Good", "Ok", "Bad"])
-      .range(["#8de8ff", "#1f4199" , "#cc3917"]);
-
-            var svg = d3.select('#chartFeb')
-                .append('svg')
-                .attr('width', width)
-                .attr('height', height)
-                .append('g')
-                .attr('transform', 'translate(' + (width / 2) +
-                    ',' + (height / 2) + ')');
-
-            var arc = d3.svg.arc()
-                .innerRadius(radius - donutWidth)
-                .outerRadius(radius);
-
-            var pie = d3.layout.pie()
-                .value(function(d) {
-                    return d.month;
-                })
-                .sort(null);
-
-            d3.csv('data/feb_Aspen.csv', function(error, dataset) {
-                dataset.forEach(function(d) {
-                    d.month = +d.month;
-                });
-
-                var path = svg.selectAll('path')
-                    .data(pie(dataset))
-                    .enter()
-                    .append('path')
-                    .attr('d', arc)
-                    .attr('fill', function(d, i) {
-                        return color(d.data.condition);
-                    });
-
-            });
-
-        })(window.d3);
-
-        ///////////////MARCH
-        (function(d3) {
-            'use strict';
-
-            var width = 80;
-            var height = 80;
-            var radius = Math.min(width, height) / 2;
-            var donutWidth = 15;
-
-
-                  var color = d3.scale.ordinal()
-      .domain(["Good", "Ok", "Bad"])
-      .range(["#8de8ff", "#1f4199" , "#cc3917"]);
-
-            var svg = d3.select('#chartMar')
-                .append('svg')
-                .attr('width', width)
-                .attr('height', height)
-                .append('g')
-                .attr('transform', 'translate(' + (width / 2) +
-                    ',' + (height / 2) + ')');
-
-            var arc = d3.svg.arc()
-                .innerRadius(radius - donutWidth)
-                .outerRadius(radius);
-
-            var pie = d3.layout.pie()
-                .value(function(d) {
-                    return d.month;
-                })
-                .sort(null);
-
-            d3.csv('data/mar_Aspen.csv', function(error, dataset) {
-                dataset.forEach(function(d) {
-                    d.month = +d.month;
-                });
-
-                var path = svg.selectAll('path')
-                    .data(pie(dataset))
-                    .enter()
-                    .append('path')
-                    .attr('d', arc)
-                    .attr('fill', function(d, i) {
-                        return color(d.data.condition);
-                    });
-
-            });
-
-        })(window.d3);
-
-        ///////////////APRIL
-        (function(d3) {
-            'use strict';
-
-            var width = 80;
-            var height = 80;
-            var radius = Math.min(width, height) / 2;
-            var donutWidth = 15;
-
-
-                  var color = d3.scale.ordinal()
-      .domain(["Good", "Ok", "Bad"])
-      .range(["#8de8ff", "#1f4199" , "#cc3917"]);
-
-            var svg = d3.select('#chartApr')
-                .append('svg')
-                .attr('width', width)
-                .attr('height', height)
-                .append('g')
-                .attr('transform', 'translate(' + (width / 2) +
-                    ',' + (height / 2) + ')');
-
-            var arc = d3.svg.arc()
-                .innerRadius(radius - donutWidth)
-                .outerRadius(radius);
-
-            var pie = d3.layout.pie()
-                .value(function(d) {
-                    return d.month;
-                })
-                .sort(null);
-
-            d3.csv('data/apr_Aspen.csv', function(error, dataset) {
-                dataset.forEach(function(d) {
-                    d.month = +d.month;
-                });
-
-                var path = svg.selectAll('path')
-                    .data(pie(dataset))
-                    .enter()
-                    .append('path')
-                    .attr('d', arc)
-                    .attr('fill', function(d, i) {
-                        return color(d.data.condition);
-                    });
-
-            });
-    //                 legend = svg.append("g")
-    // .attr("class","legend")
-    // .attr("transform","translate(50,30)")
-    // .style("font-size","12px")
-    // .call(d3.legend)
-
-        })(window.d3);
-
-
-        </script>
+        <br><br><br><br><br><br><br><br>
+        <h4><p>Average Snowfall</p></h4>
+        <div id="barChartAspen"></div>
+        <br>
+        <br>
+        <h2><a name="anchorPark">Park City, Utah</a></h2>
+        <h4><p>SKIABILITY INDEX</p></h4>
+        <div id="chartPark">
+        <ul class="chartMonthPark">
+            <li>
+                <div id="chartNovPark">
+                    <p id="text">November</p></div>
+            </li>
+            <li>
+                <div id="chartDecPark">
+                    <p id="text">December</p></div>
+            </li>
+            <li>
+                <div id="chartJanPark">
+                    <p id="text">January</p></div>
+            </li>
+            <li>
+                <div id="chartFebPark">
+                    <p id="text">February</p></div>
+            </li>
+            <li>
+                <div id="chartMarPark">
+                    <p id="text">March</p></div>
+            </li>
+            <li>
+                <div id="chartAprPark">
+                    <p id="text">April</p></div>
+            </li>
+        </ul>
+        </div>
+        <br><br><br><br><br><br><br><br>
+        <h4><p>Average Snowfall</p></h4>
+        <div id="barChartPark"></div> 
+        <script type="text/javascript" src="js/scriptPark.js"></script>
+        <script type="text/javascript" src="js/scriptAspen.js"></script>
 </body>
 
 </html>
